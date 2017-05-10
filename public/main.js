@@ -22,6 +22,8 @@
   }
 
   socket.on('drawing', onDrawingEvent);
+  socket.on('clear', onClearEvent);
+
 
   window.addEventListener('resize', onResize, false);
   onResize();
@@ -92,9 +94,14 @@
     };
   }
 
+  function onClearEvent(){
+    var w = canvas.width;
+    var h = canvas.height;
+    context.clearRect(0,0,w,h);
+  }
+
   function onDrawingEvent(data){
-    // var w = canvas.width;
-    // var h = canvas.height;
+    console.log("onDraw",data);
     drawBot(data.x, data.y, data.r, data.theta, data.color);
   }
 
